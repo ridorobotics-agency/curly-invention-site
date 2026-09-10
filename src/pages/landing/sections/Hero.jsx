@@ -22,7 +22,7 @@ export default function Hero() {
           alt="Wedding couple, shown from the waist down"
           className={`l-hero-img ${imgLoaded ? 'loaded' : ''}`}
           onLoad={() => setImgLoaded(true)}
-          fetchpriority="high"
+          fetchPriority="high"
           decoding="async"
           loading="eager"
         />
