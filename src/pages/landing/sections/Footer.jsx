@@ -28,8 +28,8 @@ const TikTokIcon = () => (
 const footerLinks = {
   product: [
     { label: 'Digital Invitations', href: '/digital-wedding-invitations' },
-    { label: 'Event Manager', href: '/event-manager' },
-    { label: 'Guest Management', href: '/event-manager#guests' },
+    { label: 'Event Manager', href: 'https://app.ridoevents.co.tz' },
+    { label: 'Guest Management', href: 'https://app.ridoevents.co.tz' },
     { label: 'QR Check-In', href: '/#qr-check-in' },
     { label: 'RSVP', href: '/#guest-management' },
   ],
@@ -55,8 +55,8 @@ const footerLinks = {
 const footerLinksSw = {
   product: [
     { label: 'Mialiko ya Kidijitali', href: '/sw/mwaliko-wa-harusi-kidigitali' },
-    { label: 'Msimamizi wa Tukio', href: '/event-manager' },
-    { label: 'Usimamizi wa Wageni', href: '/event-manager#guests' },
+    { label: 'Msimamizi wa Tukio', href: 'https://app.ridoevents.co.tz' },
+    { label: 'Usimamizi wa Wageni', href: 'https://app.ridoevents.co.tz' },
     { label: 'QR Check-In', href: '/#qr-check-in' },
     { label: 'RSVP', href: '/#guest-management' },
   ],
@@ -130,7 +130,7 @@ export default function Footer() {
             <h4>{f.columns.product.heading}</h4>
             <ul className="l-footer-links">
               {links.product.map(link => (
-                <li key={link.href}>
+                <li key={link.label}>
                   <a href={link.href} className="l-footer-link">{link.label}</a>
                 </li>
               ))}

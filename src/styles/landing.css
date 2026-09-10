@@ -723,9 +723,9 @@
 
 .l-nav-link {
   font-family: var(--sans);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--charcoal-mid);
   padding: 0.35rem 0.35rem;
@@ -919,8 +919,8 @@
 .l-mobile-nav-link {
   font-family: var(--sans);
   font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--charcoal);
   padding: var(--sp-3) var(--sp-4);

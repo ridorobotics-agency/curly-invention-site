@@ -21,7 +21,7 @@ const CloseIcon = () => (
 const navLinks = [
   { key: 'home', href: '/' },
   { key: 'digitalCards', href: '/digital-cards' },
-  { key: 'eventManager', href: '/event-manager' },
+  { key: 'eventManager', href: 'https://app.ridoevents.co.tz' },
   { key: 'features', href: '/#features' },
   { key: 'howItWorks', href: '/#how-it-works' },
   { key: 'pricing', href: '/#pricing' },
