@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from './landing/sections/Header';
 import Footer from './landing/sections/Footer';
 
-const siteUrl = 'https://ridoevents.co.tz';
+const siteUrl = 'https://www.ridoevents.co.tz';
 
 const englishPages = {
   'digital-wedding-invitations': {

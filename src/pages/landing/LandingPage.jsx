@@ -106,7 +106,7 @@ function LandingContent() {
 export default function LandingPage() {
   // Set page-level SEO document title
   useEffect(() => {
-    const canonicalUrl = 'https://ridoevents.co.tz/';
+    const canonicalUrl = 'https://www.ridoevents.co.tz/';
     document.title = 'RIDO EVENTS | Digital Wedding Invitations & Event Management Tanzania';
     const canonicalTag = document.querySelector('link[rel="canonical"]');
     if (canonicalTag) canonicalTag.setAttribute('href', canonicalUrl);

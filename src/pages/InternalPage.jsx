@@ -139,7 +139,7 @@ export default function InternalPage({ page }) {
     setMetaContent('meta[property="twitter:title"]', title);
     setMetaContent('meta[property="twitter:description"]', description);
     const canonicalPath = page === 'digitalCards' ? '/digital-wedding-invitations' : window.location.pathname;
-    const canonicalUrl = `https://ridoevents.co.tz${canonicalPath}`;
+    const canonicalUrl = `https://www.ridoevents.co.tz${canonicalPath}`;
     const canonicalTag = document.querySelector('link[rel="canonical"]');
     if (canonicalTag) canonicalTag.setAttribute('href', canonicalUrl);
     setMetaContent('meta[property="og:url"]', canonicalUrl);
@@ -149,7 +149,7 @@ export default function InternalPage({ page }) {
       '@type': 'BreadcrumbList',
       '@id': `${canonicalUrl}#breadcrumb`,
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://ridoevents.co.tz/' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.ridoevents.co.tz/' },
         { '@type': 'ListItem', position: 2, name: title.split(' | ')[0], item: canonicalUrl },
       ],
     }];
@@ -161,8 +161,8 @@ export default function InternalPage({ page }) {
         headline: title.split(' | ')[0],
         description,
         mainEntityOfPage: canonicalUrl,
-        author: { '@type': 'Organization', name: 'RIDO EVENTS', url: 'https://ridoevents.co.tz/' },
-        publisher: { '@id': 'https://ridoevents.co.tz/#organization' },
+        author: { '@type': 'Organization', name: 'RIDO EVENTS', url: 'https://www.ridoevents.co.tz/' },
+        publisher: { '@id': 'https://www.ridoevents.co.tz/#organization' },
       });
     }
 

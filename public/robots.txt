@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /register
 
-Sitemap: https://ridoevents.co.tz/sitemap.xml
+Sitemap: https://www.ridoevents.co.tz/sitemap.xml
