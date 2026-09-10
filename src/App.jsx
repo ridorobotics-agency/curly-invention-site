@@ -4,6 +4,7 @@ import LandingPage from './pages/landing/LandingPage';
 import InternalPage from './pages/InternalPage';
 import SeoLandingPage from './pages/SeoLandingPage';
 import { LanguageProvider } from './context/LanguageContext';
+import NotFoundPage from './pages/NotFoundPage';
 
 const APP_URL = 'https://app.ridoevents.co.tz';
 
@@ -12,7 +13,7 @@ function AppRedirect() {
     window.location.replace(APP_URL);
   }, []);
 
-  return null;
+  return <NotFoundPage isRedirecting />;
 }
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
           <Route path="/privacy" element={<InternalPage page="privacy" />} />
           <Route path="/terms" element={<InternalPage page="terms" />} />
           <Route path="/cookies" element={<InternalPage page="cookies" />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </LanguageProvider>
     </BrowserRouter>
