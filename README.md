@@ -1,4 +1,10 @@
-# React + Vite
+# RIDO EVENTS website
+
+The public landing page and SEO pages are built with React and Vite. Run `npm run build` to produce the Vite bundle and prerender the homepage, digital invitation page, and configured SEO landing pages into `dist/`. SEO landing page routes and their content are configured in `src/App.jsx` and `src/pages/SeoLandingPage.jsx`; keep `public/sitemap.xml` aligned with those public URLs.
+
+`public/robots.txt` allows public pages to be crawled and points search engines to the sitemap. The Vercel rewrite continues to serve the React application for routes that are not emitted as prerendered static pages.
+
+## React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 

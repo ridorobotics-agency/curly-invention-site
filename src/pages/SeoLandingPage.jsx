@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Header from './landing/sections/Header';
 import Footer from './landing/sections/Footer';
 
 const siteUrl = 'https://www.ridoevents.co.tz';
+const canonicalUrlFor = path => `${siteUrl}/${path.replace(/^\/+|\/+$/g, '')}/`;
 
 const englishPages = {
   'digital-wedding-invitations': {
@@ -84,6 +85,61 @@ const englishPages = {
     steps: ['Publish the invitation with an RSVP action.', 'Let guests respond from the link.', 'Use response updates to plan the celebration.'],
     faqs: [['Can guests RSVP from a phone?', 'Yes. The RSVP experience is designed for guests using mobile devices.'], ['Can RSVPs connect to guest management?', 'Yes. RSVP responses are part of the wider guest and event workflow.']],
     related: [['Digital Wedding Invitations', '/digital-wedding-invitations'], ['Guest Management', '/guest-management'], ['Wedding Websites', '/wedding-websites']],
+  },
+  'qr-code-wedding-cards': {
+    title: 'QR Code Wedding Cards Tanzania | RIDO EVENTS',
+    description: 'Create digital wedding cards with QR codes in Tanzania. Share invitations, collect RSVPs and make guest check-in easier with RIDO EVENTS.',
+    h1: 'QR Code Wedding Cards in Tanzania',
+    intro: 'Pair a beautiful digital wedding invitation with a QR code that helps guests access event details and supports a smoother arrival.',
+    benefits: ['Share one convenient invitation link with your guests.', 'Connect invitations with RSVP and guest information.', 'Use QR check-in to help event teams verify arrivals.'],
+    features: ['Digital wedding card designs', 'Shareable invitation links', 'RSVP tracking', 'QR guest check-in'],
+    steps: ['Create your event and add the key details.', 'Choose an invitation design and share it with guests.', 'Track RSVPs and use QR check-in on the event day.'],
+    faqs: [['Are QR code wedding cards digital?', 'RIDO lets you share event invitations digitally. QR check-in can help event teams verify guests as they arrive.'], ['Can guests RSVP to a QR invitation?', 'Guests can respond through the digital invitation when an RSVP action is enabled.']],
+    related: [['Wedding Cards', '/wedding-cards'], ['QR Check-In', '/qr-check-in'], ['Guest Management', '/guest-management']],
+  },
+  'graduation-cards': {
+    title: 'Graduation Invitation Cards Tanzania | RIDO EVENTS',
+    description: 'Create and share digital graduation invitation cards in Tanzania. Keep event details, guest replies and attendance organized with RIDO EVENTS.',
+    h1: 'Graduation Invitation Cards in Tanzania',
+    intro: 'Invite family and friends to celebrate a graduation with clear event details and an invitation that is easy to share from your phone.',
+    benefits: ['Share graduation details with guests through a digital link.', 'Keep event information together and easy to update.', 'Organize guest replies before the celebration.'],
+    features: ['Digital invitation designs', 'Personalized event details', 'WhatsApp-friendly sharing', 'Guest response tracking'],
+    steps: ['Add the graduate, date, venue and celebration details.', 'Choose and personalize an invitation design.', 'Share it with guests and keep track of replies.'],
+    faqs: [['Can I use a digital card for a graduation party?', 'Yes. RIDO supports digital invitations for graduations and other celebrations.'], ['How can I share the graduation invitation?', 'You can share a digital invitation link through WhatsApp, SMS, email or another messaging app.']],
+    related: [['Digital Invitations', '/digital-wedding-invitations'], ['Guest Management', '/guest-management'], ['Event Management', '/event-management']],
+  },
+  'sendoff-cards': {
+    title: 'Send-Off Invitation Cards Tanzania | RIDO EVENTS',
+    description: 'Create and share digital send-off invitations in Tanzania. Organize guest responses and event details with RIDO EVENTS.',
+    h1: 'Digital Send-Off Invitation Cards',
+    intro: 'Bring family and friends together for a send-off celebration with a digital invitation that keeps the important details in one place.',
+    benefits: ['Share invitation details without relying on printed copies.', 'Keep venue, timing and event information easy to find.', 'Track guest replies as you prepare for the celebration.'],
+    features: ['Digital event invitations', 'Personalized event information', 'WhatsApp and link sharing', 'RSVP and guest tracking'],
+    steps: ['Create the send-off event and add its details.', 'Personalize the invitation for your celebration.', 'Share the invitation and follow guest responses.'],
+    faqs: [['Can RIDO invitations be used for a send-off?', 'RIDO supports digital invitations and event organization for celebrations beyond weddings.'], ['Can I update the event details after sharing?', 'You can update your event information so guests can access the current details through the invitation.']],
+    related: [['Wedding Cards', '/wedding-cards'], ['Digital Invitations', '/digital-wedding-invitations'], ['RSVP Management', '/rsvp']],
+  },
+  'kitchen-party-cards': {
+    title: 'Kitchen Party Invitation Cards Tanzania | RIDO EVENTS',
+    description: 'Create and share digital kitchen party invitations in Tanzania. Keep event details and guest responses organized with RIDO EVENTS.',
+    h1: 'Digital Kitchen Party Invitation Cards',
+    intro: 'Invite guests to a kitchen party with a personal digital invitation and one easy-to-share place for celebration details.',
+    benefits: ['Make event details easy to share with family and friends.', 'Keep changes available to guests through the same invitation.', 'Organize RSVPs and guest information before the event.'],
+    features: ['Digital invitation designs', 'Personalized event details', 'Mobile-friendly sharing', 'RSVP and guest tracking'],
+    steps: ['Add the date, venue and other kitchen party details.', 'Personalize a digital invitation for your event.', 'Share it with guests and keep track of replies.'],
+    faqs: [['Can I create an invitation for a kitchen party?', 'RIDO provides digital event invitations that can be used to share details for celebrations and gatherings.'], ['Can guests open the invitation on their phones?', 'Yes. Digital invitations are designed to be opened and shared on mobile devices.']],
+    related: [['Wedding Cards', '/wedding-cards'], ['Digital Invitations', '/digital-wedding-invitations'], ['Guest Management', '/guest-management']],
+  },
+  'wedding-planning-tanzania': {
+    title: 'Wedding Planning Tools Tanzania | RIDO EVENTS',
+    description: 'Plan a wedding in Tanzania with digital invitations, RSVP tracking, guest organization and QR check-in tools from RIDO EVENTS.',
+    h1: 'Wedding Planning Tools for Tanzania',
+    intro: 'Keep guest communication and event coordination in one calm workspace, from sharing the invitation through welcoming guests on the day.',
+    benefits: ['Bring invitations, RSVPs and guest lists together.', 'Keep guests up to date with event information.', 'Prepare for arrivals with organized guest records and QR check-in.'],
+    features: ['Digital wedding invitations', 'Guest list organization', 'RSVP tracking', 'QR event check-in'],
+    steps: ['Set up your event and share the key details.', 'Invite guests and track their responses.', 'Use your current guest information to prepare for event day.'],
+    faqs: [['Does RIDO provide a full-service wedding planner?', 'RIDO provides digital tools for invitations and event coordination; it is not a claim of in-person wedding planning services.'], ['Can I use the tools for a wedding anywhere in Tanzania?', 'Digital invitations and guest tools can be accessed online. On-the-ground services depend on your event team.']],
+    related: [['Event Management', '/event-management'], ['Wedding Cards', '/wedding-cards'], ['Guest Management', '/guest-management']],
   },
 };
 
@@ -195,36 +251,53 @@ function getPageData(type, slug) {
   return swahiliPages[slug];
 }
 
-export default function SeoLandingPage({ type, slug }) {
+const locationContent = {
+  benefits: ['Share event information with guests through one digital invitation.', 'Keep venue, timing and RSVP details easy to update.', 'Organize guest responses before the celebration.'],
+  features: ['Digital event invitations', 'WhatsApp-friendly sharing', 'RSVP tracking', 'QR guest check-in'],
+  steps: ['Add your event details and venue.', 'Share a digital invitation with your guests.', 'Track responses and prepare for arrivals.'],
+  faqs: [
+    ['Can I invite guests in this location digitally?', 'Yes. Digital invitations can be shared with guests across Tanzania.'],
+    ['Can I manage RSVPs and event-day check-in?', 'RIDO supports RSVP tracking and QR check-in as part of its event tools.'],
+  ],
+};
+
+export default function SeoLandingPage({ type, slug, path }) {
   const data = getPageData(type, slug);
+  const pageData = useMemo(
+    () => type === 'location' ? { ...locationContent, ...data } : data,
+    [type, data],
+  );
   const isSwahili = type === 'swahili';
-  const path = isSwahili ? `/sw/${slug}` : `/${slug}`;
-  const canonicalUrl = `${siteUrl}${path}`;
+  const routePath = path || (isSwahili ? `/sw/${slug}` : `/${slug}`);
+  const canonicalPath = `/${routePath.replace(/^\/+|\/+$/g, '')}/`;
+  const canonicalUrl = `${siteUrl}${canonicalPath}`;
 
   useEffect(() => {
-    document.title = data.title;
+    document.title = pageData.title;
     const setMeta = (selector, content) => {
       const tag = document.querySelector(selector);
       if (tag) tag.setAttribute('content', content);
     };
-    setMeta('meta[name="description"]', data.description);
-    setMeta('meta[property="og:title"]', data.title);
-    setMeta('meta[property="og:description"]', data.description);
+    setMeta('meta[name="description"]', pageData.description);
+    setMeta('meta[property="og:title"]', pageData.title);
+    setMeta('meta[property="og:description"]', pageData.description);
     setMeta('meta[property="og:url"]', canonicalUrl);
-    setMeta('meta[property="twitter:title"]', data.title);
-    setMeta('meta[property="twitter:description"]', data.description);
+    setMeta('meta[property="twitter:title"]', pageData.title);
+    setMeta('meta[property="twitter:description"]', pageData.description);
     setMeta('meta[property="twitter:url"]', canonicalUrl);
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) canonical.setAttribute('href', canonicalUrl);
 
     const alternatePaths = [];
-    if (data.swPath) alternatePaths.push(['en-TZ', canonicalUrl], ['sw-TZ', `${siteUrl}${data.swPath}`]);
-    if (data.englishPath) alternatePaths.push(['en-TZ', `${siteUrl}${data.englishPath}`], ['sw-TZ', canonicalUrl]);
+    if (pageData.swPath) alternatePaths.push(['en-TZ', canonicalUrl], ['sw-TZ', canonicalUrlFor(pageData.swPath)]);
+    if (pageData.englishPath) alternatePaths.push(['en-TZ', canonicalUrlFor(pageData.englishPath)], ['sw-TZ', canonicalUrl]);
+    document.querySelectorAll('link[data-rido-seo-alternate]').forEach(link => link.remove());
     const alternateLinks = alternatePaths.map(([lang, href]) => {
       const link = document.createElement('link');
       link.rel = 'alternate';
       link.hreflang = lang;
       link.href = href;
+      link.dataset.ridoSeoAlternate = 'true';
       document.head.appendChild(link);
       return link;
     });
@@ -235,9 +308,9 @@ export default function SeoLandingPage({ type, slug }) {
     schema.textContent = JSON.stringify({
       '@context': 'https://schema.org',
       '@graph': [
-        { '@type': 'Service', name: data.h1, description: data.description, url: canonicalUrl, provider: { '@id': `${siteUrl}/#organization` }, areaServed: { '@type': 'Country', name: 'Tanzania' } },
-        { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` }, { '@type': 'ListItem', position: 2, name: data.h1, item: canonicalUrl }] },
-        ...(data.faqs ? [{ '@type': 'FAQPage', mainEntity: data.faqs.map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })) }] : []),
+        { '@type': 'Service', name: pageData.h1, description: pageData.description, url: canonicalUrl, provider: { '@id': `${siteUrl}/#organization` }, areaServed: { '@type': 'Country', name: 'Tanzania' } },
+        { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` }, { '@type': 'ListItem', position: 2, name: pageData.h1, item: canonicalUrl }] },
+        ...(pageData.faqs ? [{ '@type': 'FAQPage', mainEntity: pageData.faqs.map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })) }] : []),
       ],
     });
     document.getElementById('rido-seo-page-schema')?.remove();
@@ -247,7 +320,9 @@ export default function SeoLandingPage({ type, slug }) {
       alternateLinks.forEach(link => link.remove());
       schema.remove();
     };
-  }, [canonicalUrl, data]);
+  }, [canonicalUrl, pageData]);
+
+  if (!pageData) return null;
 
   return (
     <div className="landing-root l-internal-root">
@@ -256,31 +331,31 @@ export default function SeoLandingPage({ type, slug }) {
         <div className="l-container l-seo-page">
           <div className="l-internal-hero">
             <span className="l-label">{isSwahili ? 'RIDO EVENTS' : type === 'location' ? 'RIDO IN TANZANIA' : 'RIDO SERVICES'}</span>
-            <h1 className="l-heading-xl">{data.h1}</h1>
-            <p className="l-internal-lead">{data.intro}</p>
+            <h1 className="l-heading-xl">{pageData.h1}</h1>
+            <p className="l-internal-lead">{pageData.intro}</p>
             <a href="https://app.ridoevents.co.tz" className="l-btn l-btn-primary l-btn-lg">{isSwahili ? 'Anza Kutengeneza' : 'Create Your Invitation'}</a>
           </div>
 
-          {data.local && <section className="l-internal-prose"><h2>Local event planning in {slug.replaceAll('-', ' ')}</h2><p>{data.local}</p></section>}
+          {pageData.local && <section className="l-internal-prose"><h2>Local event planning in {slug.replaceAll('-', ' ')}</h2><p>{pageData.local}</p></section>}
 
           <section className="l-seo-content-section">
             <h2>{isSwahili ? 'Faida' : 'Benefits'}</h2>
-            <div className="l-internal-grid">{data.benefits.map(item => <article className="l-internal-card" key={item}><p>{item}</p></article>)}</div>
+            <div className="l-internal-grid">{pageData.benefits.map(item => <article className="l-internal-card" key={item}><p>{item}</p></article>)}</div>
           </section>
 
           <section className="l-seo-content-section">
             <h2>{isSwahili ? 'Vipengele' : 'Features'}</h2>
-            <div className="l-internal-grid">{data.features.map(item => <article className="l-internal-card" key={item}><h3>{item}</h3></article>)}</div>
+            <div className="l-internal-grid">{pageData.features.map(item => <article className="l-internal-card" key={item}><h3>{item}</h3></article>)}</div>
           </section>
 
           <section className="l-seo-content-section l-internal-prose">
             <h2>{isSwahili ? 'Jinsi inavyofanya kazi' : 'How It Works'}</h2>
-            <ol>{data.steps.map(step => <li key={step}>{step}</li>)}</ol>
+            <ol>{pageData.steps.map(step => <li key={step}>{step}</li>)}</ol>
           </section>
 
           <section className="l-seo-content-section l-internal-prose">
             <h2>{isSwahili ? 'Maswali ya kawaida' : 'Frequently Asked Questions'}</h2>
-            {data.faqs.map(([question, answer]) => <div key={question}><h3>{question}</h3><p>{answer}</p></div>)}
+            {pageData.faqs.map(([question, answer]) => <div key={question}><h3>{question}</h3><p>{answer}</p></div>)}
           </section>
 
           <section className="l-seo-content-section l-internal-cta">
@@ -290,7 +365,7 @@ export default function SeoLandingPage({ type, slug }) {
 
           <nav className="l-seo-related" aria-label={isSwahili ? 'Viungo vinavyohusiana' : 'Related pages'}>
             <h2>{isSwahili ? 'Gundua zaidi' : 'Explore Related Services'}</h2>
-            <div className="l-internal-actions">{data.related.map(([label, href]) => <Link className="l-btn l-btn-outline" to={href} key={href}>{label}</Link>)}</div>
+            <div className="l-internal-actions">{pageData.related.map(([label, href]) => <Link className="l-btn l-btn-outline" to={href} key={href}>{label}</Link>)}</div>
           </nav>
         </div>
       </main>

@@ -138,7 +138,8 @@ export default function InternalPage({ page }) {
     setMetaContent('meta[property="og:description"]', description);
     setMetaContent('meta[property="twitter:title"]', title);
     setMetaContent('meta[property="twitter:description"]', description);
-    const canonicalPath = page === 'digitalCards' ? '/digital-wedding-invitations' : window.location.pathname;
+    const routePath = page === 'digitalCards' ? '/digital-wedding-invitations' : window.location.pathname;
+    const canonicalPath = `/${routePath.replace(/^\/+|\/+$/g, '')}/`;
     const canonicalUrl = `https://www.ridoevents.co.tz${canonicalPath}`;
     const canonicalTag = document.querySelector('link[rel="canonical"]');
     if (canonicalTag) canonicalTag.setAttribute('href', canonicalUrl);
@@ -195,7 +196,7 @@ export default function InternalPage({ page }) {
       <div className="landing-root l-internal-root">
         <Header />
         <main className="l-internal-main l-digital-cards-page">
-          <DigitalCards />
+          <DigitalCards headingLevel="h1" heading="Digital Wedding Invitations in Tanzania" />
         </main>
         <Footer />
       </div>

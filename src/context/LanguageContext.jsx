@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useSyncExternalStore } from 'react';
 
 const translations = {
   en: {
@@ -782,25 +782,37 @@ const translations = {
 
 const LanguageContext = createContext();
 
+function subscribeToLanguage(callback) {
+  window.addEventListener('storage', callback);
+  window.addEventListener('rido-language-change', callback);
+  return () => {
+    window.removeEventListener('storage', callback);
+    window.removeEventListener('rido-language-change', callback);
+  };
+}
+
+function getLanguageSnapshot() {
+  return window.localStorage.getItem('rido-language') === 'sw' ? 'sw' : 'en';
+}
+
+function setStoredLanguage(code) {
+  window.localStorage.setItem('rido-language', code);
+  window.dispatchEvent(new Event('rido-language-change'));
+}
+
 export function LanguageProvider({ children }) {
-  const [lang, setLang] = useState(() => {
-    const savedLanguage = window.localStorage.getItem('rido-language');
-    return savedLanguage === 'sw' ? 'sw' : 'en';
-  });
+  const lang = useSyncExternalStore(
+    subscribeToLanguage,
+    getLanguageSnapshot,
+    () => 'en',
+  );
 
   const toggleLanguage = () => {
-    setLang(prev => {
-      const nextLanguage = prev === 'en' ? 'sw' : 'en';
-      window.localStorage.setItem('rido-language', nextLanguage);
-      return nextLanguage;
-    });
+    setStoredLanguage(lang === 'en' ? 'sw' : 'en');
   };
 
   const setLanguage = (code) => {
-    if (code === 'en' || code === 'sw') {
-      setLang(code);
-      window.localStorage.setItem('rido-language', code);
-    }
+    if (code === 'en' || code === 'sw') setStoredLanguage(code);
   };
 
   const t = translations[lang];

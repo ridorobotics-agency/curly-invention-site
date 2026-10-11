@@ -28,6 +28,13 @@ const TikTokIcon = () => (
 const footerLinks = {
   product: [
     { label: 'Digital Invitations', href: '/digital-wedding-invitations' },
+    { label: 'Wedding Cards', href: '/wedding-cards' },
+    { label: 'QR Code Wedding Cards', href: '/qr-code-wedding-cards' },
+    { label: 'Graduation Cards', href: '/graduation-cards' },
+    { label: 'Send-Off Cards', href: '/sendoff-cards' },
+    { label: 'Kitchen Party Cards', href: '/kitchen-party-cards' },
+    { label: 'Wedding Planning Tools', href: '/wedding-planning-tanzania' },
+    { label: 'Event Management', href: '/event-management' },
     { label: 'Event Manager', href: 'https://app.ridoevents.co.tz' },
     { label: 'Guest Management', href: 'https://app.ridoevents.co.tz' },
     { label: 'QR Check-In', href: '/#qr-check-in' },
@@ -55,6 +62,13 @@ const footerLinks = {
 const footerLinksSw = {
   product: [
     { label: 'Mialiko ya Kidijitali', href: '/sw/mwaliko-wa-harusi-kidigitali' },
+    { label: 'Kadi za Harusi', href: '/wedding-cards' },
+    { label: 'Kadi za Harusi za QR', href: '/qr-code-wedding-cards' },
+    { label: 'Kadi za Graduation', href: '/graduation-cards' },
+    { label: 'Kadi za Send-Off', href: '/sendoff-cards' },
+    { label: 'Kadi za Kitchen Party', href: '/kitchen-party-cards' },
+    { label: 'Mipango ya Harusi', href: '/wedding-planning-tanzania' },
+    { label: 'Usimamizi wa Matukio', href: '/event-management' },
     { label: 'Msimamizi wa Tukio', href: 'https://app.ridoevents.co.tz' },
     { label: 'Usimamizi wa Wageni', href: 'https://app.ridoevents.co.tz' },
     { label: 'QR Check-In', href: '/#qr-check-in' },

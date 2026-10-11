@@ -11,10 +11,11 @@ const cardColors = [
 const cardEmojis = ['✿ ◆ ✿', '✦ ✧ ✦', '❋ ✵ ❋', '❀ ✾ ❀', '✸ ★ ✸', '✺ ✦ ✺', '◆ ✧ ◆'];
 const categoryKeys = ['All', 'Wedding', 'Traditional', 'Birthday', 'Graduation', 'Baby Shower', 'Corporate', 'Religious', 'Party'];
 
-export default function DigitalCards() {
+export default function DigitalCards({ headingLevel = 'h2', heading }) {
   const { t } = useLanguage();
   useReveal();
   const c = t.cards;
+  const Heading = headingLevel;
   const [activeCategory, setActiveCategory] = useState(0);
   const [previewTemplate, setPreviewTemplate] = useState(null);
   const visibleTemplates = activeCategory === 0
@@ -27,7 +28,7 @@ export default function DigitalCards() {
         {/* Header */}
         <div className="l-section-header l-reveal">
           <span className="l-label">Digital Cards</span>
-          <h2 className="l-heading-md">{c.heading}</h2>
+          <Heading className="l-heading-md">{heading || c.heading}</Heading>
           <div className="l-divider l-divider-center" aria-hidden="true" />
           <p>{c.subtext}</p>
         </div>

@@ -5,6 +5,7 @@ import InternalPage from './pages/InternalPage';
 import SeoLandingPage from './pages/SeoLandingPage';
 import { LanguageProvider } from './context/LanguageContext';
 import NotFoundPage from './pages/NotFoundPage';
+import { seoRoutes } from './seoRoutes';
 
 const APP_URL = 'https://app.ridoevents.co.tz';
 
@@ -16,30 +17,20 @@ function AppRedirect() {
   return <NotFoundPage isRedirecting />;
 }
 
-function App() {
+export function AppRoutes() {
   return (
-    <BrowserRouter>
-      <LanguageProvider>
-        <Routes>
+    <LanguageProvider>
+      <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/digital-wedding-invitations" element={<InternalPage page="digitalCards" />} />
           <Route path="/digital-cards" element={<InternalPage page="digitalCards" />} />
-          <Route path="/wedding-cards" element={<SeoLandingPage type="service" slug="wedding-cards" />} />
-          <Route path="/wedding-websites" element={<SeoLandingPage type="service" slug="wedding-websites" />} />
-          <Route path="/event-management" element={<SeoLandingPage type="service" slug="event-management" />} />
-          <Route path="/guest-management" element={<SeoLandingPage type="service" slug="guest-management" />} />
-          <Route path="/qr-check-in" element={<SeoLandingPage type="service" slug="qr-check-in" />} />
-          <Route path="/rsvp" element={<SeoLandingPage type="service" slug="rsvp" />} />
-          <Route path="/wedding-events-mwanza" element={<SeoLandingPage type="location" slug="mwanza" />} />
-          <Route path="/wedding-events-geita" element={<SeoLandingPage type="location" slug="geita" />} />
-          <Route path="/wedding-events-morogoro" element={<SeoLandingPage type="location" slug="morogoro" />} />
-          <Route path="/wedding-events-dar-es-salaam" element={<SeoLandingPage type="location" slug="dar-es-salaam" />} />
-          <Route path="/wedding-events-arusha" element={<SeoLandingPage type="location" slug="arusha" />} />
-          <Route path="/wedding-events-dodoma" element={<SeoLandingPage type="location" slug="dodoma" />} />
-          <Route path="/sw/kadi-ya-harusi" element={<SeoLandingPage type="swahili" slug="kadi-ya-harusi" />} />
-          <Route path="/sw/kadi-ya-mwaliko" element={<SeoLandingPage type="swahili" slug="kadi-ya-mwaliko" />} />
-          <Route path="/sw/usimamizi-wa-sherehe" element={<SeoLandingPage type="swahili" slug="usimamizi-wa-sherehe" />} />
-          <Route path="/sw/mwaliko-wa-harusi-kidigitali" element={<SeoLandingPage type="swahili" slug="mwaliko-wa-harusi-kidigitali" />} />
+          {seoRoutes.map(({ path, type, slug }) => (
+            <Route
+              key={path}
+              path={path}
+              element={<SeoLandingPage type={type} slug={slug} path={path} />}
+            />
+          ))}
           <Route path="/event-manager" element={<InternalPage page="eventManager" />} />
           <Route path="/register" element={<AppRedirect />} />
           <Route path="/about" element={<InternalPage page="about" />} />
@@ -53,8 +44,15 @@ function App() {
           <Route path="/terms" element={<InternalPage page="terms" />} />
           <Route path="/cookies" element={<InternalPage page="cookies" />} />
           <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </LanguageProvider>
+      </Routes>
+    </LanguageProvider>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppRoutes />
     </BrowserRouter>
   );
 }
