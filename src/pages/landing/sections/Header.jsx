@@ -1,15 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-
-// Icons
-const MenuIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-    <line x1="3" y1="6" x2="21" y2="6"/>
-    <line x1="3" y1="12" x2="21" y2="12"/>
-    <line x1="3" y1="18" x2="21" y2="18"/>
-  </svg>
-);
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const CloseIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
@@ -35,6 +26,7 @@ export default function Header() {
   const [scrolled, setScrolled]     = useState(false);
   const [menuOpen, setMenuOpen]     = useState(false);
   const nav = t.nav;
+  const closeMenu = () => setMenuOpen(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -42,13 +34,20 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+    const onKeyDown = event => {
+      if (event.key === 'Escape') setMenuOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [menuOpen]);
+
   // lock body scroll when menu open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
-
-  const closeMenu = () => setMenuOpen(false);
 
   const handleNavClick = (e, href) => {
     if (href.startsWith('/#')) {
@@ -159,6 +158,7 @@ export default function Header() {
           className="l-mobile-close"
           onClick={closeMenu}
           aria-label="Close menu"
+          tabIndex={menuOpen ? 0 : -1}
         >
           <CloseIcon />
         </button>
@@ -185,6 +185,8 @@ export default function Header() {
               className={`l-lang-btn ${lang === 'en' ? 'active' : ''}`}
               onClick={() => setLanguage('en')}
               tabIndex={menuOpen ? 0 : -1}
+              aria-pressed={lang === 'en'}
+              aria-label="Switch to English"
             >
               EN
             </button>
@@ -192,6 +194,8 @@ export default function Header() {
               className={`l-lang-btn ${lang === 'sw' ? 'active' : ''}`}
               onClick={() => setLanguage('sw')}
               tabIndex={menuOpen ? 0 : -1}
+              aria-pressed={lang === 'sw'}
+              aria-label="Badili kwa Kiswahili"
             >
               SW
             </button>

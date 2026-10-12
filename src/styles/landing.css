@@ -127,10 +127,33 @@
 .l-internal-root .l-header.transparent {
   background: rgba(250, 248, 245, 0.96);
   box-shadow: var(--shadow-xs);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .l-internal-root .l-header.transparent .l-nav-link {
   color: var(--charcoal-mid);
+}
+
+.l-internal-root .l-header.transparent .l-nav-link:hover {
+  color: var(--gold);
+  background: var(--gold-pale);
+}
+
+.l-internal-root .l-header.transparent .l-lang-switcher {
+  border-color: rgba(44, 37, 32, 0.15);
+}
+
+.l-internal-root .l-header.transparent .l-lang-btn {
+  color: var(--warm-gray);
+}
+
+.l-internal-root .l-header.transparent .l-lang-btn.active {
+  color: var(--white);
+}
+
+.l-internal-root .l-header.transparent .l-hamburger span {
+  background: var(--charcoal);
 }
 
 .landing-root img {
@@ -723,12 +746,12 @@
 
 .l-nav-link {
   font-family: var(--sans);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.025em;
   text-transform: uppercase;
   color: var(--charcoal-mid);
-  padding: 0.35rem 0.35rem;
+  padding: 0.35rem 0.2rem;
   border-radius: var(--radius);
   transition: color var(--t-base) var(--ease),
               background var(--t-base) var(--ease);
@@ -860,13 +883,19 @@
   display: flex;
   flex-direction: column;
   transform: translateX(100%);
-  transition: transform var(--t-slow) var(--ease);
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform var(--t-slow) var(--ease),
+              visibility 0s linear var(--t-slow);
   box-shadow: var(--shadow-xl);
   overflow-y: auto;
 }
 
 .l-mobile-menu.open {
   transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
 }
 
 .l-mobile-menu-overlay {
@@ -3616,9 +3645,16 @@
 /* ==========================================================
    RESPONSIVE — Tablet (≤ 1024px)
    ========================================================== */
-@media (max-width: 1150px) {
+@media (max-width: 1320px) {
   .l-nav { display: none; }
   .l-hamburger { display: flex; }
+  .l-header .l-btn-primary.l-btn-sm,
+  .l-header .l-btn-outline-gold.l-btn-sm {
+    display: none;
+  }
+}
+
+@media (max-width: 1150px) {
   .l-header-inner {
     gap: var(--sp-3);
     padding: 0 var(--sp-4);
@@ -3636,10 +3672,6 @@
     transform: scale(0.9);
     transform-origin: right center;
   }
-  .l-header .l-btn-primary.l-btn-sm {
-    display: none;
-  }
-
   .l-cards-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -3742,13 +3774,13 @@
 
   .l-logo {
     gap: 0.5rem;
-    max-width: calc(100% - 120px);
+    max-width: none;
   }
 
   .l-header .l-logo-glass {
-    width: 166px;
-    height: 50px;
-    padding: 0.3rem 0.6rem;
+    width: 142px;
+    height: 44px;
+    padding: 0.25rem 0.5rem;
   }
 
   .l-logo-mark {
@@ -3764,11 +3796,11 @@
   }
 
   .l-header-actions {
-    gap: 0.5rem;
+    gap: 0.375rem;
   }
 
   .l-lang-switcher {
-    transform: scale(0.8);
+    transform: scale(0.9);
   }
 
   .l-hamburger {
